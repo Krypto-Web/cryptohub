@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — CryptoHub</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="portfolio.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+<body>
+
+  <!-- TICKER -->
+  <div class="ticker-bar"><div class="ticker-track" id="ticker"></div></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+        <div class="logo-icon">
+          <svg viewBox="0 0 18 18" fill="none" width="18" height="18">
+            <polygon points="9,2 16,6 16,12 9,16 2,12 2,6" stroke="#000" stroke-width="1.5" fill="none"/>
+            <circle cx="9" cy="9" r="2.5" fill="#000"/>
+          </svg>
+        </div>
+        <div class="logo-text">Crypto<span>Hub</span></div>
+      </a>
+    </div>
+    <div class="nav-tabs">
+      <a href="../index.html" class="tab">Markets</a>
+      <a href="calendar.html" class="tab">Calendar</a>
+      <a href="forum.html" class="tab">Forum</a>
+      <a href="portfolio.html" class="tab active">Portfolio</a>
+    </div>
+    <div class="nav-right">
+      <button class="signin-btn">Sign in</button>
+      <button class="join-btn">Join free</button>
+    </div>
+  </nav>
+
+  <!-- PORTFOLIO PAGE -->
+  <div class="portfolio-page">
+
+    <!-- LEFT: SUMMARY + HOLDINGS -->
+    <div class="portfolio-main">
+
+      <!-- SUMMARY CARDS -->
+      <div class="summary-grid" id="summary-grid">
+        <div class="summary-card">
+          <div class="sc-label">Total Value</div>
+          <div class="sc-val" id="total-value">$0.00</div>
+          <div class="sc-sub" id="total-invested">Invested: $0.00</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Total P&L</div>
+          <div class="sc-val" id="total-pnl">$0.00</div>
+          <div class="sc-sub" id="total-pnl-pct">0.00%</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Best Performer</div>
+          <div class="sc-val" id="best-coin">—</div>
+          <div class="sc-sub" id="best-pct">—</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Holdings</div>
+          <div class="sc-val" id="holdings-count">0 coins</div>
+          <div class="sc-sub" id="last-updated-port">Not yet updated</div>
+        </div>
+      </div>
+
+      <!-- ALLOCATION BAR -->
+      <div class="alloc-section" id="alloc-section" style="display:none">
+        <div class="section-label">Allocation</div>
+        <div class="alloc-bar" id="alloc-bar"></div>
+        <div class="alloc-legend" id="alloc-legend"></div>
+      </div>
+
+      <!-- HOLDINGS TABLE -->
+      <div class="holdings-section">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Holdings</div>
+            <div class="section-title">Your Portfolio</div>
+          </div>
+          <button class="add-btn" id="open-modal-btn">
+            <i class="ti ti-plus"></i> Add Coin
+          </button>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon"><i class="ti ti-chart-pie"></i></div>
+          <div class="empty-title">Your portfolio is empty</div>
+          <div class="empty-sub">Add coins you own to start tracking your profit & loss in real time.</div>
+          <button class="add-btn" onclick="document.getElementById('open-modal-btn').click()">
+            <i class="ti ti-plus"></i> Add your first coin
+          </button>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-wrap" id="holdings-table-wrap" style="display:none">
+          <table class="holdings-table">
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Holdings</th>
+                <th>Avg Buy Price</th>
+                <th>Current Price</th>
+                <th>Current Value</th>
+                <th>P&L</th>
+                <th>24h</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="holdings-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: ADD PANEL + TIPS -->
+    <div class="portfolio-sidebar">
+
+      <div class="ps-card">
+        <div class="ps-title"><i class="ti ti-bulb"></i> Beginner Tips</div>
+        <div class="tip-item"><span class="tip-num">1</span><span>Only invest what you can afford to lose completely.</span></div>
+        <div class="tip-item"><span class="tip-num">2</span><span>DCA (Dollar Cost Average) beats trying to time the market.</span></div>
+        <div class="tip-item"><span class="tip-num">3</span><span>Diversify — don't put 100% in one coin.</span></div>
+        <div class="tip-item"><span class="tip-num">4</span><span>BTC and ETH are lower risk for beginners.</span></div>
+        <div class="tip-item"><span class="tip-num">5</span><span>Never sell in panic. Zoom out and look at the 1Y chart.</span></div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-title"><i class="ti ti-shield-check"></i> Data Privacy</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6">
+          Your portfolio is stored <strong style="color:var(--text)">only on your device</strong> using localStorage. Nothing is sent to any server. Sign up to sync across devices.
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-title"><i class="ti ti-refresh"></i> Live Prices</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6">
+          Prices update every <strong style="color:var(--text)">30 seconds</strong> from CoinGecko. Your P&L recalculates automatically.
+        </div>
+        <div class="refresh-countdown" id="refresh-countdown">Next update in 30s</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADD COIN MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="modal-title">Add Coin to Portfolio</div>
+        <button class="modal-close" id="modal-close"><i class="ti ti-x"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Select Coin</label>
+          <select class="form-select" id="coin-select">
+            <option value="">Choose a coin...</option>
+            <option value="bitcoin">Bitcoin (BTC)</option>
+            <option value="ethereum">Ethereum (ETH)</option>
+            <option value="solana">Solana (SOL)</option>
+            <option value="binancecoin">BNB (BNB)</option>
+            <option value="ripple">XRP (XRP)</option>
+            <option value="cardano">Cardano (ADA)</option>
+            <option value="dogecoin">Dogecoin (DOGE)</option>
+            <option value="polkadot">Polkadot (DOT)</option>
+            <option value="chainlink">Chainlink (LINK)</option>
+            <option value="avalanche-2">Avalanche (AVAX)</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Amount you own</label>
+            <input class="form-input" type="number" id="coin-amount" placeholder="e.g. 0.5" min="0" step="any" />
+            <div class="form-hint">How many coins do you hold?</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Avg buy price (USD)</label>
+            <input class="form-input" type="number" id="coin-buy-price" placeholder="e.g. 85000" min="0" step="any" />
+            <div class="form-hint">What did you pay per coin?</div>
+          </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="modal-preview" id="modal-preview" style="display:none">
+          <div class="preview-row"><span>Total invested</span><span id="prev-invested">—</span></div>
+          <div class="preview-row"><span>Current value</span><span id="prev-value">—</span></div>
+          <div class="preview-row"><span>P&L</span><span id="prev-pnl">—</span></div>
+        </div>
+
+        <div class="modal-error" id="modal-error"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" id="modal-cancel">Cancel</button>
+        <button class="confirm-btn" id="modal-confirm"><i class="ti ti-check"></i> Add to Portfolio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div class="modal-overlay" id="delete-overlay" style="display:none">
+    <div class="modal" style="max-width:380px">
+      <div class="modal-header">
+        <div class="modal-title">Remove Holding</div>
+        <button class="modal-close" onclick="closeDeleteModal()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text2);font-size:14px;line-height:1.6">Are you sure you want to remove <strong id="delete-coin-name" style="color:var(--text)"></strong> from your portfolio?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="cancel-btn" onclick="closeDeleteModal()">Cancel</button>
+        <button class="confirm-btn" style="background:var(--red)" id="confirm-delete-btn">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../app.js"></script>
+  <script src="portfolio.js"></script>
+</body>
+</html>
